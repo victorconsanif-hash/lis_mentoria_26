@@ -27,22 +27,16 @@
 
     :root {
       --navy:   #1C3528;
-      --navy2:  #243D30;
-      --navy3:  #2D5040;
       --gold:   #D4A96A;
       --gold2:  #c49558;
-      --cream:  #F9F6F2;
-      --sage:   #8ABFA8;
-      --cream60: rgba(249,246,242,0.6);
-      --cream35: rgba(249,246,242,0.35);
+      --sage:   #3A7A62;
       --gold18:  rgba(212,169,106,0.18);
-      --gold10:  rgba(212,169,106,0.10);
-      --gold25:  rgba(212,169,106,0.25);
+      --gold25:  rgba(212,169,106,0.3);
     }
 
     body {
-      background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 60%, var(--navy3) 100%);
-      color: var(--cream);
+      background: #F9F6F2;
+      color: #2A2A2A;
       font-family: 'Source Serif 4', serif;
       min-height: 100vh;
       display: flex;
@@ -71,18 +65,13 @@
       text-align: center;
     }
 
-    .glow {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 40%, rgba(212,169,106,0.08) 0%, transparent 65%);
-      pointer-events: none;
-    }
+    .glow { display: none; }
 
     .check-icon {
       width: 72px;
       height: 72px;
       border-radius: 50%;
-      background: rgba(138,191,168,0.15);
+      background: rgba(58,122,98,0.1);
       border: 1.5px solid var(--sage);
       display: flex;
       align-items: center;
@@ -113,14 +102,14 @@
       font-weight: 700;
       font-size: clamp(36px, 5vw, 52px);
       line-height: 1.1;
-      color: var(--cream);
+      color: var(--navy);
       margin-bottom: 12px;
     }
 
     h1 em {
       font-style: italic;
       font-weight: 400;
-      color: var(--gold);
+      color: var(--gold2);
     }
 
     .gold-rule {
@@ -133,19 +122,20 @@
     .body-text {
       font-size: 18px;
       font-weight: 300;
-      color: var(--cream60);
+      color: rgba(42,42,42,0.65);
       line-height: 1.75;
       margin-bottom: 36px;
     }
 
     /* ── FORMULÁRIO ── */
     .form-box {
-      background: var(--gold10);
+      background: #fff;
       border: 1px solid var(--gold25);
       border-radius: 12px;
       padding: 40px 44px;
       text-align: left;
       margin-bottom: 8px;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.06);
     }
 
     .form-label {
@@ -165,26 +155,26 @@
       display: block;
       font-size: 14px;
       font-weight: 400;
-      color: var(--cream60);
+      color: rgba(42,42,42,0.6);
       letter-spacing: 0.5px;
       margin-bottom: 8px;
     }
 
     .field input {
       width: 100%;
-      background: rgba(249,246,242,0.06);
-      border: 1px solid rgba(212,169,106,0.3);
+      background: #F9F6F2;
+      border: 1px solid rgba(212,169,106,0.35);
       border-radius: 6px;
       padding: 14px 18px;
       font-family: 'Source Serif 4', serif;
       font-size: 17px;
       font-weight: 300;
-      color: var(--cream);
+      color: #2A2A2A;
       outline: none;
       transition: border-color 0.2s;
     }
 
-    .field input::placeholder { color: rgba(249,246,242,0.3); }
+    .field input::placeholder { color: rgba(42,42,42,0.3); }
     .field input:focus { border-color: var(--gold); }
 
     .submit-btn {
@@ -208,7 +198,7 @@
     .privacy-note {
       font-size: 13px;
       font-weight: 300;
-      color: var(--cream35);
+      color: rgba(42,42,42,0.4);
       text-align: center;
       margin-top: 14px;
     }
@@ -221,7 +211,7 @@
     .success-msg {
       font-size: 17px;
       font-weight: 300;
-      color: var(--cream60);
+      color: rgba(42,42,42,0.65);
       line-height: 1.7;
       margin-bottom: 36px;
     }
@@ -253,15 +243,17 @@
       margin-top: 18px;
       font-size: 15px;
       font-weight: 300;
-      color: var(--cream35);
+      color: rgba(42,42,42,0.4);
     }
 
     .steps-mini {
       margin-top: 52px;
+      background: #fff;
       border: 1px solid var(--gold18);
       border-radius: 12px;
       padding: 36px 40px;
       text-align: left;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.05);
     }
 
     .steps-mini-title {
@@ -278,7 +270,7 @@
       align-items: flex-start;
       font-size: 16px;
       font-weight: 300;
-      color: var(--cream60);
+      color: rgba(42,42,42,0.65);
       line-height: 1.6;
     }
 
@@ -292,7 +284,7 @@
       font-family: 'Playfair Display', serif;
       font-weight: 700;
       font-size: 22px;
-      color: var(--gold);
+      color: var(--gold2);
       line-height: 1;
       flex-shrink: 0;
       width: 28px;
@@ -301,14 +293,15 @@
 
     footer {
       padding: 28px 32px;
-      border-top: 1px solid var(--gold18);
+      border-top: 1px solid rgba(212,169,106,0.15);
       text-align: center;
+      background: #fff;
     }
 
     .footer-text {
       font-size: 13px;
       font-weight: 300;
-      color: var(--cream35);
+      color: rgba(42,42,42,0.35);
     }
   </style>
 </head>
