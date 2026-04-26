@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentoria de Sessão Única — Lis Consani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy:   #1C3528;
+      --navy2:  #243D30;
+      --navy3:  #2D5040;
+      --gold:   #D4A96A;
+      --gold2:  #c49558;
+      --cream:  #F9F6F2;
+      --sage:   #8ABFA8;
+      --cream60: rgba(249,246,242,0.6);
+      --cream35: rgba(249,246,242,0.35);
+      --gold18:  rgba(212,169,106,0.18);
+      --gold10:  rgba(212,169,106,0.10);
+      --gold25:  rgba(212,169,106,0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--cream);
+      font-family: 'Source Serif 4', serif;
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ── TOP BAR ── */
+    .top-bar {
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+    }
+
+    /* ── NAV ── */
+    nav {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--gold18);
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--cream);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-logo span {
+      color: var(--gold);
+    }
+
+    .nav-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Source Serif 4', serif;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 11px 28px;
+      border-radius: 40px;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover { opacity: 0.88; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 100px 0 90px;
+      position: relative;
+      background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 60%, var(--navy3) 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 30%, rgba(212,169,106,0.09) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1.5px solid rgba(212,169,106,0.45);
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 9px 22px;
+      border-radius: 40px;
+      margin-bottom: 40px;
+    }
+
+    .hero-tag .dot {
+      width: 7px; height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(48px, 6vw, 72px);
+      line-height: 1.05;
+      color: var(--cream);
+      max-width: 680px;
+      margin-bottom: 12px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--cream60);
+      max-width: 560px;
+      line-height: 1.65;
+      margin-top: 24px;
+      margin-bottom: 52px;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 20px;
+      padding: 20px 48px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .hero-btn:hover { opacity: 0.88; }
+
+    .hero-note {
+      margin-top: 18px;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--cream35);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── SEÇÃO BASE ── */
+    section {
+      padding: 100px 0;
+    }
+
+    section + section {
+      border-top: 1px solid var(--gold18);
+    }
+
+    .section-label {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(34px, 4.5vw, 52px);
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 32px;
+    }
+
+    .section-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+    }
+
+    .gold-rule {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 40px;
+    }
+
+    /* ── DOR ── */
+    .dor-intro {
+      font-size: 19px;
+      font-weight: 300;
+      color: var(--cream60);
+      max-width: 620px;
+      margin-bottom: 52px;
+      line-height: 1.75;
+    }
+
+    .dor-list {
+      display: grid;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .dor-item {
+      background: var(--gold10);
+      border: 1px solid var(--gold25);
+      border-radius: 10px;
+      padding: 28px 36px 28px 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--cream60);
+      line-height: 1.65;
+    }
+
+    .dor-item::before {
+      content: '';
+      flex-shrink: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 10px;
+    }
+
+    /* ── O QUE É ── */
+    .o-que-e-body {
+      font-size: 19px;
+      font-weight: 300;
+      color: var(--cream60);
+      line-height: 1.75;
+      max-width: 680px;
+    }
+
+    .o-que-e-body p + p { margin-top: 24px; }
+
+    .destaque-block {
+      margin-top: 52px;
+      border-left: 3px solid var(--gold);
+      padding: 28px 40px;
+      background: var(--gold10);
+      border-radius: 0 10px 10px 0;
+    }
+
+    .destaque-block p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--cream);
+      line-height: 1.6;
+    }
+
+    /* ── COMO FUNCIONA ── */
+    .steps {
+      display: grid;
+      gap: 0;
+      margin-top: 12px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 24px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--gold18);
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 42px;
+      color: var(--gold);
+      line-height: 1;
+      padding-top: 4px;
+    }
+
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--cream60);
+      line-height: 1.7;
+    }
+
+    /* ── 4 EIXOS ── */
+    .eixos-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--cream60);
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 52px;
+    }
+
+    .eixos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) {
+      .eixos-grid { grid-template-columns: 1fr; }
+    }
+
+    .eixo-card {
+      background: var(--gold10);
+      border: 1px solid var(--gold25);
+      border-radius: 10px;
+      padding: 36px 32px;
+    }
+
+    .eixo-num {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .eixo-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+
+    .eixo-desc {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--cream60);
+      line-height: 1.7;
+    }
+
+    /* ── RESULTADO ── */
+    .resultado-box {
+      background: linear-gradient(135deg, var(--navy2) 0%, var(--navy3) 100%);
+      border: 1px solid var(--gold25);
+      border-radius: 12px;
+      padding: 60px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .resultado-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+    }
+
+    .resultado-box .section-label { margin-bottom: 16px; }
+
+    .resultado-box .section-title {
+      font-size: clamp(28px, 3.5vw, 40px);
+      margin-bottom: 28px;
+    }
+
+    .resultado-body {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--cream60);
+      line-height: 1.75;
+      max-width: 620px;
+    }
+
+    .resultado-body p + p { margin-top: 20px; }
+
+    /* ── PARA QUEM É ── */
+    .perfis-list {
+      display: grid;
+      gap: 16px;
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    .perfil-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--cream60);
+      line-height: 1.65;
+      padding: 24px 28px;
+      border-radius: 10px;
+      border: 1px solid var(--gold18);
+      transition: border-color 0.2s;
+    }
+
+    .perfil-item:hover { border-color: var(--gold25); }
+
+    .perfil-check {
+      flex-shrink: 0;
+      margin-top: 5px;
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .perfil-check::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ── QUEM VAI TE ORIENTAR ── */
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    @media (max-width: 700px) {
+      .bio-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    .bio-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 8px;
+      filter: grayscale(15%);
+    }
+
+    .bio-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--navy2);
+      border: 1px solid var(--gold25);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream35);
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .bio-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 36px;
+      color: var(--cream);
+      margin-bottom: 24px;
+    }
+
+    .bio-text {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--cream60);
+      line-height: 1.75;
+    }
+
+    .bio-text p + p { margin-top: 20px; }
+
+    /* ── CTA FINAL ── */
+    .cta-final {
+      background: linear-gradient(160deg, var(--navy) 0%, var(--navy3) 100%);
+      padding: 120px 0;
+      text-align: center;
+      border-top: 1px solid var(--gold18);
+    }
+
+    .cta-final .section-label { justify-content: center; display: flex; }
+
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.1;
+      color: var(--cream);
+      max-width: 640px;
+      margin: 0 auto 16px;
+    }
+
+    .cta-sub {
+      font-size: 20px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 52px;
+    }
+
+    .price-block {
+      margin-bottom: 40px;
+    }
+
+    .price-value {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 64px;
+      color: var(--cream);
+      line-height: 1;
+    }
+
+    .price-desc {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--cream35);
+      letter-spacing: 0.5px;
+      margin-top: 8px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 22px;
+      padding: 22px 56px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .cta-btn:hover { opacity: 0.88; }
+
+    .cta-note {
+      margin-top: 20px;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--cream35);
+    }
+
+    /* ── RODAPÉ ── */
+    footer {
+      padding: 36px 0;
+      border-top: 1px solid var(--gold18);
+    }
+
+    footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--cream35);
+    }
+
+    .footer-sig {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--cream35);
+    }
+
+    .sig-line {
+      width: 24px;
+      height: 1px;
+      background: rgba(212,169,106,0.35);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <div class="nav-logo">Lis <span>Consani</span></div>
+      <a href="obrigado.html" class="nav-cta">Quero minha mentoria</a>
+    </div>
+  </nav>
+
+  <!-- 1. HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag"><span class="dot"></span>Mentoria de Sessão Única</div>
+      <h1 class="hero-title">
+        Pare de adivinhar<br>o próximo passo.<br><em>Descubra com clareza.</em>
+      </h1>
+      <p class="hero-sub">Uma hora de diagnóstico personalizado da sua carreira clínica em TCC e um plano concreto para os próximos 90 dias.</p>
+      <a href="obrigado.html" class="hero-btn">Quero minha mentoria</a>
+      <p class="hero-note">Investimento: R$ 200 &nbsp;·&nbsp; 1 hora via Zoom</p>
+    </div>
+  </section>
+
+  <!-- 2. DOR -->
+  <section>
+    <div class="container">
+      <p class="section-label">Você se reconhece aqui?</p>
+      <h2 class="section-title">Você estudou. Você se formou.<br>Mas na hora de planejar sua carreira, algo trava.</h2>
+      <div class="gold-rule"></div>
+      <p class="dor-intro">Não é falta de esforço. É falta de direção. A graduação não te deu um mapa para crescer e você está tentando construir esse mapa sozinho, um caso de cada vez, com muita insegurança no caminho.</p>
+      <ul class="dor-list">
+        <li class="dor-item">Você sabe que quer crescer como psicólogo, mas não tem clareza sobre por onde começar nem o que priorizar.</li>
+        <li class="dor-item">Você atende, mas ainda não sabe exatamente com quem quer trabalhar, quais casos fazem sentido para você e para onde está indo.</li>
+        <li class="dor-item">Você não sabe se deveria estudar mais, buscar supervisão, fazer terapia ou mudar de contexto — e essa dúvida paralisa mais do que qualquer lacuna técnica.</li>
+        <li class="dor-item">Você está se movendo, mas sem direção clara, e isso gera uma insegurança que não passa só com o tempo.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. O QUE É -->
+  <section>
+    <div class="container">
+      <p class="section-label">O que é a mentoria</p>
+      <h2 class="section-title">Um diagnóstico real do seu<br>momento de carreira e um plano para avançar.</h2>
+      <div class="gold-rule"></div>
+      <div class="o-que-e-body">
+        <p>Antes da nossa sessão, você responde um formulário detalhado. Eu leio tudo com atenção e chego à nossa conversa com um diagnóstico.</p>
+        <p>Na sessão de uma hora, a gente valida esse diagnóstico juntas, aprofunda onde precisar e constrói um plano de ação personalizado, com clareza sobre o que você precisa fazer nos próximos 30 e 90 dias.</p>
+        <p>Você não sai com impressões gerais. Sai com um mapa.</p>
+      </div>
+      <div class="destaque-block">
+        <p>"Você não precisa de mais informação. Você precisa de alguém que olhe especificamente para você e diga o que fazer primeiro."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. COMO FUNCIONA -->
+  <section>
+    <div class="container">
+      <p class="section-label">Como funciona</p>
+      <h2 class="section-title">Três etapas. Uma hora.<br>Um plano nas mãos.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">Você compra e recebe o formulário</div>
+            <p class="step-desc">Após a compra, você recebe um formulário pré-sessão para responder no seu tempo. Ele mapeia suas inseguranças, sua prática atual, sua identidade profissional e o que você espera da mentoria.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">Nossa sessão começa com o seu diagnóstico pronto</div>
+            <p class="step-desc">Leio o formulário antes da sessão e construo um esboço do seu diagnóstico. Você não precisa se apresentar — eu já chego com hipóteses sobre onde estão suas lacunas prioritárias.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">A sessão: diagnóstico, aprofundamento e plano</div>
+            <p class="step-desc">Em uma hora via Zoom, a gente valida o diagnóstico, vai fundo nos pontos que mais importam e constrói o seu plano de ação. Após a sessão, você recebe tudo por escrito.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 4 EIXOS -->
+  <section>
+    <div class="container">
+      <p class="section-label">As 4 dimensões da mentoria</p>
+      <h2 class="section-title">4 eixos de diagnóstico</h2>
+      <div class="gold-rule"></div>
+      <p class="eixos-sub">A mentoria não é uma conversa genérica. Ela parte de um método estruturado que investiga quatro dimensões essenciais da sua carreira, para que você saia sabendo exatamente quem é, para onde vai e o que fazer primeiro.</p>
+      <div class="eixos-grid">
+        <div class="eixo-card">
+          <div class="eixo-num">Eixo 01</div>
+          <div class="eixo-title">Desenvolvimento técnico</div>
+          <p class="eixo-desc">Onde estão suas lacunas reais, o que estudar primeiro e como aproveitar melhor supervisão e formações.</p>
+        </div>
+        <div class="eixo-card">
+          <div class="eixo-num">Eixo 02</div>
+          <div class="eixo-title">Autoconhecimento clínico</div>
+          <p class="eixo-desc">Seus pontos cegos, como sua história aparece na sessão e o que você atende ou evita sem perceber.</p>
+        </div>
+        <div class="eixo-card">
+          <div class="eixo-num">Eixo 03</div>
+          <div class="eixo-title">Identidade profissional</div>
+          <p class="eixo-desc">Quem você quer atender, qual nicho faz sentido para o seu perfil e como construir uma identidade profissional que te represente de verdade.</p>
+        </div>
+        <div class="eixo-card">
+          <div class="eixo-num">Eixo 04</div>
+          <div class="eixo-title">Contexto de prática</div>
+          <p class="eixo-desc">Se o contexto onde você está inserida hoje — convênio, plataforma, consultório, clínica — faz sentido para o seu momento de carreira, e como planejar uma transição se o caminho precisar mudar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5B. RESULTADO -->
+  <section>
+    <div class="container">
+      <div class="resultado-box">
+        <p class="section-label">O que você leva da mentoria</p>
+        <h2 class="section-title">Tudo converge para um lugar:<br><em>o seu próximo passo.</em></h2>
+        <div class="resultado-body">
+          <p>Ao final da sessão, você recebe um plano de ação por escrito, construído a partir de quem você é, do momento em que está e de onde quer chegar.</p>
+          <p>Nada genérico. Nada que sirva para todo mundo. Um mapa feito para você, com clareza sobre o que fazer nos próximos 30 e 90 dias.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PARA QUEM É -->
+  <section>
+    <div class="container">
+      <p class="section-label">Para quem é</p>
+      <h2 class="section-title">Essa mentoria foi feita<br>para você se...</h2>
+      <div class="gold-rule"></div>
+      <ul class="perfis-list">
+        <li class="perfil-item">
+          <span class="perfil-check"></span>
+          Você já sabe que quer ser uma psicóloga de excelência, mas ainda não sabe qual caminho trilhar para chegar lá.
+        </li>
+        <li class="perfil-item">
+          <span class="perfil-check"></span>
+          Você está atendendo, mas sente que está se movendo sem direção — e essa falta de clareza pesa mais do que qualquer dificuldade do dia a dia.
+        </li>
+        <li class="perfil-item">
+          <span class="perfil-check"></span>
+          Você não sabe o que priorizar agora e sente que está tomando decisões de carreira no escuro.
+        </li>
+        <li class="perfil-item">
+          <span class="perfil-check"></span>
+          Você quer um olhar externo e personalizado, não uma lista genérica de conselhos que serve para todo mundo.
+        </li>
+        <li class="perfil-item">
+          <span class="perfil-check"></span>
+          Você quer sair da sessão com um plano concreto nas mãos, não com mais perguntas do que entrou.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7. QUEM VAI TE ORIENTAR -->
+  <section>
+    <div class="container">
+      <p class="section-label">Quem vai te orientar</p>
+      <div class="bio-grid">
+        <img class="bio-photo"
+          src="mentoria-lis.webp"
+          alt="Psicóloga Lis Consani" />
+        <div>
+          <h2 class="bio-name">Lis Consani</h2>
+          <div class="bio-text">
+            <p>Psicóloga com 14 anos de experiência, mestre em Saúde e especialista em TCC. Passou 8 anos como professora no ensino superior e supervisionou psicólogos em diferentes momentos da carreira. Conhece de perto as dificuldades reais de quem está começando — não só na teoria.</p>
+            <p>Criadora da disciplina gratuita no YouTube <em>TCC: Do Zero à Formulação de Caso</em>, onde ensina com rigor clínico e aplicação prática para estudantes e recém-formados.</p>
+            <p>Acredita que o recém-formado tem muito ainda a aprender e que o primeiro passo é saber exatamente o que estudar, em qual ordem e por quê. É essa orientação que ela entrega na mentoria.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CTA FINAL -->
+  <section class="cta-final" id="cta">
+    <div class="container">
+      <p class="section-label">Mentoria de Sessão Única</p>
+      <h2 class="cta-title">Pronta para parar de adivinhar e começar com direção?</h2>
+      <p class="cta-sub">Uma hora. Um diagnóstico real. Um plano que é seu.</p>
+      <div class="price-block">
+        <div class="price-value">R$ 200</div>
+        <div class="price-desc">Mentoria de Sessão Única &nbsp;·&nbsp; 1 hora via Zoom &nbsp;·&nbsp; Plano de ação por escrito</div>
+      </div>
+      <a href="obrigado.html" class="cta-btn">Quero minha mentoria</a>
+      <p class="cta-note">Após a compra, você recebe o formulário e agendamos sua sessão.</p>
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <div class="container">
+      <p class="footer-text">© Lis Consani · Mentoria de Sessão Única · Todos os direitos reservados</p>
+      <div class="footer-sig">
+        <span class="sig-line"></span>
+        Psicóloga Lis Caroline Consani &nbsp;·&nbsp; CRP 06/113696
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
